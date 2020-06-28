@@ -1,14 +1,6 @@
 package jianzhioffer;
 
 public class test1 {
-    public static void main(String[] args){
-        int[] A = {1,2,3,4,5,6};
-        test1 t = new test1();
-        int[] B = t.multiply(A);
-        for (int value : B) {
-            System.out.println(value);
-        }
-    }
 
     private int[] multiply(int[] A) {
         //B[i]=A[0]*A[1]*...*A[i-1]*A[i+1]*...*A[n-1] ==》去掉了A[]

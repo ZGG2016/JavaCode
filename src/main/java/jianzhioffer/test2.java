@@ -1,11 +1,6 @@
 package jianzhioffer;
 
 public class test2 {
-    public static void main(String[] args){
-        test2 t = new test2();
-        System.out.println(t.Add(1,2));
-    }
-
 
     private int Add(int num1, int num2) {
 
