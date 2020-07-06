@@ -1,4 +1,4 @@
-package hadoopbase;
+package hadoopbase.wordcount;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
@@ -17,16 +17,15 @@ import java.net.URI;
 
 public class WordCount {
 
-    static final String input_path = "hdfs://zgg:9000/in/test.txt";
-    static final String output_path = "hdfs://zgg:9000/out";
+    private static final String INPUT_PATH = "hdfs://zgg:9000/in/wc.txt";
+    private static final String OUTPUT_PATH = "hdfs://zgg:9000/out/wc";
     public static void main(String[] args) throws Exception {
 
         BasicConfigurator.configure();
-
         Configuration conf = new Configuration();
-        FileSystem fs = FileSystem.get(new URI(input_path), conf);
 
-        Path outPath = new Path(output_path);
+        FileSystem fs = FileSystem.get(new URI(INPUT_PATH), conf);
+        Path outPath = new Path(OUTPUT_PATH);
         if(fs.exists(outPath)){
             fs.delete(outPath,true);
         }
@@ -42,8 +41,8 @@ public class WordCount {
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(IntWritable.class);
 
-        FileInputFormat.setInputPaths(job,new Path(input_path));
-        FileOutputFormat.setOutputPath(job,new Path(output_path));
+        FileInputFormat.setInputPaths(job,new Path(INPUT_PATH));
+        FileOutputFormat.setOutputPath(job,new Path(OUTPUT_PATH));
 
         System.exit(job.waitForCompletion(true)? 0: 1);
 
@@ -70,26 +69,11 @@ public class WordCount {
         @Override
         protected void reduce(Text key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException {
             int sum = 0;
-            for(IntWritable v : values){
-                sum += v.get();
+            for(IntWritable val : values){
+                sum += val.get();
             }
             rlt.set(sum);
             context.write(key, rlt);
         }
     }
-
-//    public static class MyPartitioner extends HashPartitioner<Text,IntWritable>{
-//        @Override
-//        public int getPartition(Text key, IntWritable value, int numReduceTasks) {
-//            if(key.toString().length()<3){
-//                return 0;
-//            }
-//            else if(key.toString().length()>=3 && key.toString().length() <6){
-//                return 1;
-//            }
-//            else{
-//                return 2;
-//            }
-//        }
-//    }
 }
