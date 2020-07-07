@@ -38,7 +38,7 @@ public class SecondSort {
         job.setMapperClass(SortMapper.class);
         job.setMapOutputKeyClass(NewK2.class);
         job.setMapOutputValueClass(LongWritable.class);
-
+//也可以添加自定义分区器和分组器
         job.setReducerClass(SortReducer.class);
         job.setOutputKeyClass(LongWritable.class);
         job.setOutputValueClass(LongWritable.class);

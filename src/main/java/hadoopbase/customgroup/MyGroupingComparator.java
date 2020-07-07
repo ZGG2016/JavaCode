@@ -1,4 +1,4 @@
-package hadoopbase.customgrouping;
+package hadoopbase.customgroup;
 
 import hadoopbase.secondsort.NewK2;
 import org.apache.hadoop.io.RawComparator;
