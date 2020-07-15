@@ -10,10 +10,16 @@ import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IOUtils;
 import org.apache.hadoop.io.compress.CompressionCodec;
 import org.apache.hadoop.io.compress.CompressionCodecFactory;
-
+/*
+* 根据文件扩展名选取codec，解压缩文件
+*
+* */
 public class FileDecompressor {
+
+    private static final String INPUT_PATH = "hdfs://zgg:9000/in/wc.txt.gz";
+
     public static void main(String[] args) throws Exception {
-        String uri = args[0];
+        String uri = INPUT_PATH;
         Configuration conf = new Configuration();
         FileSystem fs = FileSystem.get(URI.create(uri), conf);
 
