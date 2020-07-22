@@ -5,13 +5,13 @@ import java.util.Queue;
 import java.util.Stack;
 
 public class Tree {
-    static class Node {
+     static class Node {
         Node left;
         Node right;
         int val;
 
         Node(int x) {
-            val = x;
+            this.val = x;
         }
     }
 
@@ -122,6 +122,37 @@ public class Tree {
         int right = getMaxDepth(root.right);
         return Math.max(left,right)+1;
     }
+    private int getMaxDepthNotRecursion(Node root){
+        if(root == null) return 0;
+
+        Queue<Node> queue = new LinkedList<>();
+        queue.offer(root);
+
+        int depth = 0;
+
+        // 定义两个变量，用来标记一层有没有处理完。cur < width 表示没处理完。
+        // cur记录访问到当前层的第几个,widtd为当前层的宽度
+        int cur = 0,width = 0;
+        Node p = root;
+        while(!queue.isEmpty()){
+            cur = 0;
+            width = queue.size();
+            depth++;
+            while(cur<width){  //一次处理一层的数据
+                p = queue.poll();
+                if(p.left != null){
+                    queue.offer(p.left);
+                }
+                if(p.right != null){
+                    queue.offer(p.right);
+                }
+                cur++;
+            }
+        }
+        return depth;
+    }
+
+
     //求二叉树的最小深度
     private int getMinDepth(Node root) {
         if(root == null) return 0;
@@ -155,6 +186,43 @@ public class Tree {
             maxwidth = Math.max(maxwidth,q.size());
         }
         return maxwidth;
+    }
+    //广度优先遍历
+    private void bfs(Node root){
+        if(root==null) return;
+
+        Queue<Node> q = new LinkedList<>();
+        q.offer(root);
+
+        while(!q.isEmpty()){
+            Node tmp = q.poll();
+            System.out.println(tmp.val);
+            if(tmp.left!=null){
+                q.offer(tmp.left);
+            }
+            if(tmp.right!=null){
+                q.offer(tmp.right);
+            }
+        }
+    }
+
+    //深度优先遍历
+    private void dfs(Node root){
+        if(root==null) return;
+
+        Stack<Node> stack = new Stack<>();
+        stack.push(root);
+
+        while(!stack.isEmpty()){
+            Node tmp = stack.pop();
+            if(tmp.right!=null){
+                stack.push(tmp.right);
+            }
+            if(tmp.left!=null){
+                stack.push(tmp.left);
+            }
+            System.out.println(tmp.val);
+        }
     }
 
     public static void main(String[] args){
