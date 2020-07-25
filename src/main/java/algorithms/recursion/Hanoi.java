@@ -1,4 +1,4 @@
-package algorithms;
+package algorithms.recursion;
 
 /*
 * 汉诺塔

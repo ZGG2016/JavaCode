@@ -5,10 +5,12 @@ import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapred.SplitLocationInfo;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
+import org.apache.hadoop.mapreduce.lib.input.FileSplit;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.log4j.BasicConfigurator;
 
@@ -26,6 +28,8 @@ public class WordCount {
 
         FileSystem fs = FileSystem.get(new URI(INPUT_PATH), conf);
         Path outPath = new Path(OUTPUT_PATH);
+//        System.out.println("getName" +":"+outPath.getName()); //path:wc
+//        System.out.println("outPath" + ":" + outPath); //outPath:hdfs://zgg:9000/out/wc
         if(fs.exists(outPath)){
             fs.delete(outPath,true);
         }
@@ -43,7 +47,6 @@ public class WordCount {
 
         FileInputFormat.setInputPaths(job,new Path(INPUT_PATH));
         FileOutputFormat.setOutputPath(job,new Path(OUTPUT_PATH));
-
         System.exit(job.waitForCompletion(true)? 0: 1);
 
     }

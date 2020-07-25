@@ -1,4 +1,9 @@
-package algorithms;
+package algorithms.recursion;
+
+/*
+* 斐波那契
+*
+* */
 
 public class Fibonacci {
     public static void main(String[] agrs){
@@ -27,7 +32,7 @@ public class Fibonacci {
         return fibonacci(second,first+second,n-1);
     }
     // 1、1、2、3、5、8、13、21、34
-    //不递归，循环
+    //循环
     private static int fibonacciLoop(int n){
         int first = 1;
         int second = 1;

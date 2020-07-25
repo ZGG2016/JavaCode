@@ -1,4 +1,4 @@
-package algorithms;
+package algorithms.recursion;
 
 /*
 * 回文字符串的判断

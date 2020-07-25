@@ -1,4 +1,4 @@
-package algorithms;
+package algorithms.recursion;
 
 /*
 * 递归中 栈特性理解

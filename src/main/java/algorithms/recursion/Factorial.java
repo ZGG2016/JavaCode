@@ -1,8 +1,8 @@
-package algorithms;
+package algorithms.recursion;
 
 /*
 *
-* 递归求阶乘
+* 求阶乘
 *
 * */
 public class Factorial {
@@ -11,16 +11,17 @@ public class Factorial {
         System.out.println(factorialLoop(5));
 
     }
+
+    //递归
     //f(4) = 4*3*2*1 = 4*f(3) = ... = 4*3*2*1*f(0)
     private static int factorial(int n){
         if(n == 0){
             return 1;    // 递归终止条件
         }
-
         return n*factorial(n-1);   //递推公式
     }
 
-    //非递归实现
+    //循环实现
     private static int factorialLoop(int n){
         int rlt = n;
         while(n>1){
