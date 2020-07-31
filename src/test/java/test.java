@@ -28,10 +28,15 @@ public class test {
 
         Hashtable<String, Integer> numbers = new Hashtable<String, Integer>();
 
-        List al = new ArrayList();
+        for(int i=0;i<5;i++){
+            System.out.println(i);
+        }
 
-        List ll = new LinkedList();
+        for(int i=0;i<5;++i){
+            System.out.println(i);
+        }
     }
+
 
     public static class TreeNode {
         int val = 0;
@@ -44,17 +49,4 @@ public class test {
         }
 
     }
-
-    private void depth(TreeNode root, int depth, ArrayList<ArrayList<Integer>> list) {
-        if(root == null) return;
-        if(depth > list.size())
-            list.add(new ArrayList<Integer>());
-        list.get(depth -1).add(root.val);  // 第一次处理根结点。
-
-        depth(root.left, depth + 1, list);
-        depth(root.right, depth + 1, list);
-    }
-
-
-
 }

@@ -16,11 +16,17 @@ public class ShellSort {
 
 	public static void main(String[] args) {
 		int[] arr={6,2,8,4,1,7};
-		sort(arr);
-        for(int i=0;i<arr.length;i++){
-            System.out.println(arr[i]);
-        }
+		shellSort(arr);
+		for (int value : arr) {
+			System.out.println(value);
+		}
 	}
+
+	public static void shellSort(int[] arr){
+		if(arr.length == 0) return;
+		sort(arr);
+	}
+
 	public static void sort(int[] arr){
 		int n=arr.length;
 		int h=1;
@@ -39,7 +45,7 @@ public class ShellSort {
 		}
 	}
 
-    public static void exch(int[] arr,int i,int j){
+    private static void exch(int[] arr, int i, int j){
         int t=arr[j];
         arr[j]=arr[i];
         arr[i]=t;

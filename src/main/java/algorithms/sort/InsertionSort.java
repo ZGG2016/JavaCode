@@ -26,10 +26,10 @@ public class InsertionSort {
         }
     }
 
-    private static void exch(int[] arr, int i, int j){
-        // “ÏªÚΩªªª
-        arr[i] = arr[i] ^ arr[j];
-        arr[j] = arr[i] ^ arr[j];
-        arr[i] = arr[i] ^ arr[j];
+    private static void exch(int[] arr, int i, int j) {
+        int swap = arr[i];
+        arr[i] = arr[j];
+        arr[j] = swap;
+
     }
 }

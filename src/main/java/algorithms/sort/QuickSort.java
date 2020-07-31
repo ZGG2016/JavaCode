@@ -45,14 +45,11 @@ public class QuickSort {
         return j;
     }
 
-	private static void exch(int[] arr, int i, int j) {
-//        int swap = a[i];
-//        a[i] = a[j];
-//        a[j] = swap;
-        // “ÏªÚΩªªª
-        arr[i] = arr[i] ^ arr[j];
-        arr[j] = arr[i] ^ arr[j];
-        arr[i] = arr[i] ^ arr[j];
+    private static void exch(int[] arr, int i, int j) {
+        int swap = arr[i];
+        arr[i] = arr[j];
+        arr[j] = swap;
+
     }
 
 //========================================================================
