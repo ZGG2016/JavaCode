@@ -18,9 +18,17 @@
 import org.apache.spark.Dependency;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.spark.executor.CoarseGrainedExecutorBackend;
+import org.apache.spark.memory.MemoryConsumer;
+import org.apache.spark.memory.MemoryManager;
 import org.apache.spark.shuffle.ShuffleBlockResolver;
 import org.apache.spark.shuffle.ShuffleManager;
 import org.apache.spark.shuffle.sort.SortShuffleManager;
+import org.apache.spark.shuffle.sort.SortShuffleWriter;
+import org.apache.spark.shuffle.sort.UnsafeShuffleWriter;
+import org.apache.spark.storage.StorageLevel;
+import org.apache.spark.SparkEnv;
+import org.apache.spark.util.collection.PartitionedAppendOnlyMap;
 import scala.Tuple2;
 
 import org.apache.spark.api.java.JavaPairRDD;
@@ -55,6 +63,7 @@ public final class JavaWordCount {
     JavaPairRDD<String, Integer> counts = ones.reduceByKey((i1, i2) -> i1 + i2);
 
     List<Tuple2<String, Integer>> output = counts.collect();
+
     for (Tuple2<?,?> tuple : output) {
       System.out.println(tuple._1() + ": " + tuple._2());
     }
