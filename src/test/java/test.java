@@ -18,35 +18,26 @@ import java.util.concurrent.ArrayBlockingQueue;
 
 public class test {
 
+    public static int aMethod(int i) throws Exception {
+
+        try {
+            return i/10;
+        }catch (Exception ex){
+            throw new Exception("exception in a Method");
+        }finally {
+            System.out.println("finally");
+        }
+    }
+
+
+
     public static void main(String[] args) throws Exception {
-
-        HashMap<Integer, String> hm = new HashMap<Integer, String>();
-
-        LinkedHashMap<String, String> lhm = new LinkedHashMap<String, String>();
-
-        TreeMap<String, String> tm = new TreeMap<String, String>();
-
-        Hashtable<String, Integer> numbers = new Hashtable<String, Integer>();
-
-        for(int i=0;i<5;i++){
-            System.out.println(i);
+        try{
+            aMethod(0);
+        }catch (Exception ex){
+            System.out.println("exception in main");
         }
-
-        for(int i=0;i<5;++i){
-            System.out.println(i);
-        }
+        System.out.println("finished");
     }
 
-
-    public static class TreeNode {
-        int val = 0;
-        TreeNode left = null;
-        TreeNode right = null;
-
-        public TreeNode(int val) {
-            this.val = val;
-
-        }
-
-    }
 }
