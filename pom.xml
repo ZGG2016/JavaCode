@@ -32,8 +32,8 @@
                         </goals>
                     </execution>
                     <execution>
-                        <id>test-compile-scala</id>
-                        <phase>test-compile</phase>
+                        <id>HeapOOM-compile-scala</id>
+                        <phase>HeapOOM-compile</phase>
                         <goals>
                             <goal>add-source</goal>
                             <goal>testCompile</goal>
