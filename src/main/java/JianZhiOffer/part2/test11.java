@@ -5,7 +5,7 @@ public class test11 {
     //https://www.nowcoder.com/questionTerminal/bd7f978302044eee894445e244c7eee6
 
     public static void main(String[] args){
-        System.out.println(NumberOf1Between1AndN_Solution(1));
+        System.out.println(NumberOf1Between1AndN_Solution(9));
     }
     public static int NumberOf1Between1AndN_Solution(int n) {
         int count = 0;
