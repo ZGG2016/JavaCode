@@ -1,4 +1,6 @@
-package javabase.collection;
+package javabase.list;
+
+import javabase.collection.Student;
 
 import java.util.ArrayList;
 import java.util.Iterator;

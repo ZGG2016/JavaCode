@@ -3,7 +3,9 @@ package javabase.collection;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
-
+/*
+* Collection:遍历
+* */
 public class CollectionDemo04 {
     public static void main(String[] args) {
         // 创建集合对象
