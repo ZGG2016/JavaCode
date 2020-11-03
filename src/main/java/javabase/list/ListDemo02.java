@@ -34,12 +34,12 @@ public class ListDemo02 {
 //---------------------------------------------------------------------------------------
 
         //存储自定义对象并遍历
-        List<Student> list2 = new ArrayList<Student>();
+        List<javabase.collection.Student> list2 = new ArrayList<javabase.collection.Student>();
 
         // 创建学生对象
-        Student s1 = new Student("白骨精", 30);
-        Student s2 = new Student("蜘蛛精", 40);
-        Student s3 = new Student("观音姐姐", 22);
+        javabase.collection.Student s1 = new javabase.collection.Student("白骨精", 30);
+        javabase.collection.Student s2 = new javabase.collection.Student("蜘蛛精", 40);
+        javabase.collection.Student s3 = new javabase.collection.Student("观音姐姐", 22);
 
         // 把学生对象添加到集合对象中
         list2.add(s1);
@@ -49,7 +49,7 @@ public class ListDemo02 {
         // 遍历
         Iterator it2 = list.iterator();
         while (it2.hasNext()) {
-            Student s = (Student) it2.next();
+            javabase.collection.Student s = (Student) it2.next();
             System.out.println(s.getName() + "---" + s.getAge());
         }
     }

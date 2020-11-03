@@ -1,7 +1,6 @@
 package javabase.io.chars;
 
 import java.io.*;
-import java.util.Arrays;
 
 public class BufferedReaderDemo {
     public static void main(String[] args) throws IOException {

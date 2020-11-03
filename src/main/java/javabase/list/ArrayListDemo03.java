@@ -33,13 +33,13 @@ public class ArrayListDemo03 {
         }
 //------------------------------------------------------------------------
         //存储自定义对象并遍历
-        ArrayList<Student> al2 = new ArrayList<Student>();
+        ArrayList<javabase.collection.Student> al2 = new ArrayList<javabase.collection.Student>();
 
         // 创建学生对象
-        Student s1 = new Student("武松", 30);
-        Student s2 = new Student("鲁智深", 40);
-        Student s3 = new Student("林冲", 36);
-        Student s4 = new Student("杨志", 38);
+        javabase.collection.Student s1 = new javabase.collection.Student("武松", 30);
+        javabase.collection.Student s2 = new javabase.collection.Student("鲁智深", 40);
+        javabase.collection.Student s3 = new javabase.collection.Student("林冲", 36);
+        javabase.collection.Student s4 = new javabase.collection.Student("杨志", 38);
 
         // 添加元素
         al2.add(s1);
@@ -48,9 +48,9 @@ public class ArrayListDemo03 {
         al2.add(s4);
 
         // 1.迭代器
-        Iterator<Student> it2 = al2.iterator();
+        Iterator<javabase.collection.Student> it2 = al2.iterator();
         while (it2.hasNext()) {
-            Student s = (Student) it2.next();
+            javabase.collection.Student s = (javabase.collection.Student) it2.next();
             System.out.println(s.getName() + "---" + s.getAge());
         }
 
@@ -61,7 +61,7 @@ public class ArrayListDemo03 {
             // String s = (String) array.get(x);
             // System.out.println(s);
 
-            Student s = (Student) al2.get(x);
+            javabase.collection.Student s = (Student) al2.get(x);
             System.out.println(s.getName() + "---" + s.getAge());
         }
     }
