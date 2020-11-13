@@ -31,17 +31,9 @@
                             <goal>compile</goal>
                         </goals>
                     </execution>
-                    <execution>
-                        <id>HeapOOM-compile-scala</id>
-                        <phase>HeapOOM-compile</phase>
-                        <goals>
-                            <goal>add-source</goal>
-                            <goal>testCompile</goal>
-                        </goals>
-                    </execution>
                 </executions>
                 <configuration>
-                    <scalaVersion>2.11.12</scalaVersion>
+                    <scalaVersion>2.12.12</scalaVersion>
                 </configuration>
             </plugin>
 
@@ -75,30 +67,47 @@
         <dependency>
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-common</artifactId>
-            <version>2.7.3</version>
+            <version>3.2.1</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.module</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.module</groupId>
+            <artifactId>jackson-module-scala_2.12</artifactId>
+            <version>2.11.3</version>
+        </dependency>
+
         <dependency>
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-hdfs</artifactId>
-            <version>2.7.3</version>
+            <version>3.2.1</version>
         </dependency>
         <dependency>
             <groupId>org.apache.hadoop</groupId>
-            <artifactId>hadoop-mapreduce-client-jobclient</artifactId>
-            <version>2.7.3</version>
+            <artifactId>hadoop-mapreduce-client-core</artifactId>
+            <version>3.2.1</version>
         </dependency>
         <dependency>
             <groupId>org.apache.hadoop</groupId>
-            <artifactId>hadoop-mapreduce-client-common</artifactId>
-            <version>2.7.3</version>
+            <artifactId>hadoop-client</artifactId>
+            <version>3.2.1</version>
         </dependency>
+
 
         <!-- spark -->
         <dependency>
             <groupId>org.apache.spark</groupId>
-            <artifactId>spark-core_2.11</artifactId>
-            <version>2.4.4</version>
-            <!--将netty包排除-->
+            <artifactId>spark-core_2.12</artifactId>
+            <version>3.0.1</version>
+            <!-- 将netty包排除 -->
             <exclusions>
                 <exclusion>
                     <groupId>io.netty</groupId>
@@ -113,18 +122,18 @@
         </dependency>
         <dependency>
             <groupId>org.apache.spark</groupId>
-            <artifactId>spark-sql_2.11</artifactId>
-            <version>2.4.4</version>
+            <artifactId>spark-sql_2.12</artifactId>
+            <version>3.0.1</version>
         </dependency>
         <dependency>
             <groupId>org.apache.spark</groupId>
-            <artifactId>spark-streaming_2.11</artifactId>
-            <version>2.4.4</version>
+            <artifactId>spark-streaming_2.12</artifactId>
+            <version>3.0.1</version>
         </dependency>
         <dependency>
             <groupId>org.apache.spark</groupId>
-            <artifactId>spark-streaming-kafka-0-10_2.11</artifactId>
-            <version>2.4.4</version>
+            <artifactId>spark-streaming-kafka-0-10_2.12</artifactId>
+            <version>3.0.1</version>
         </dependency>
 <!--        <dependency>-->
 <!--            <groupId>org.apache.spark</groupId>-->

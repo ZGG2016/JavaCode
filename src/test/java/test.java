@@ -1,17 +1,24 @@
-import com.google.common.collect.Multiset;
-import org.apache.commons.collections.Bag;
 
 import java.util.*;
+import java.io.File;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class test {
     public static void main(String[] args) {
-        String s = "abaad";
-        HashMap<Character, Boolean> dic = new HashMap<>();
-        char[] sc = s.toCharArray();
-        for(char c : sc)
-            dic.put(c, !dic.containsKey(c));
-
-        System.out.println(dic);
+        String str = "ABC789D4E4";
+        for(int i=0;i<str.length();i++){
+            char ch = str.charAt(i);
+            if(ch<48 || ch>57){
+                str = str.replace(ch, ' ');
+            }
+        }
+        String[] ss = str.trim().split(" ");
+        HashSet<String> hs = new HashSet<>();
+        Collections.addAll(hs, ss);
+        String[] rlt = hs.toArray(new String[0]);
+        for(String s:rlt){
+            System.out.println(s);
+        }
     }
-
 }
