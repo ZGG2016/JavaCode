@@ -9,13 +9,13 @@ import org.apache.hadoop.io.WritableComparator;
  */
 public class MyGroupingComparator implements RawComparator<NewK2> {
     /**
-     * @param arg0 表示第一个参与比较的字节数组
-     * @param arg1 表示第一个参与比较的字节数组的起始位置
-     * @param arg2 表示第一个参与比较的字节数组的偏移量
+     * @param b1 表示第一个参与比较的字节数组
+     * @param s1 表示第一个参与比较的字节数组的起始位置
+     * @param l1 表示第一个参与比较的字节数组的偏移量
      *
-     * @param arg3 表示第二个参与比较的字节数组
-     * @param arg4 表示第二个参与比较的字节数组的起始位置
-     * @param arg5 表示第二个参与比较的字节数组的偏移量
+     * @param b2 表示第二个参与比较的字节数组
+     * @param s2 表示第二个参与比较的字节数组的起始位置
+     * @param l2 表示第二个参与比较的字节数组的偏移量
      */
     @Override
     public int compare(byte[] b1, int s1, int l1, byte[] b2, int s2, int l2) {

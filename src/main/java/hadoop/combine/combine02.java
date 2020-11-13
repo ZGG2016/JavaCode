@@ -85,7 +85,7 @@ public class combine02 {
 				context.write(new Text(word), new LongWritable(1));
 				System.out.println("Mapper输出<"+word+","+1+">");
 			}
-		};
+		}
 	}
 	
 	/**
@@ -106,7 +106,7 @@ public class combine02 {
 				System.out.println("MyReducer输入键值对<"+k2.toString()+","+count.get()+">");
 			}
 			ctx.write(k2, new LongWritable(times));
-		};
+		}
 	}
 
 
@@ -124,6 +124,6 @@ public class combine02 {
 			ctx.write(k2, new LongWritable(times));
 			//显示次数表示输出的k2,v2的键值对数量
 			System.out.println("Combiner输出键值对<"+k2.toString()+","+times+">");
-		};
+		}
 	}
 }

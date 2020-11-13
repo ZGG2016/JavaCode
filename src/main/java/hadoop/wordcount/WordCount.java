@@ -52,7 +52,7 @@ public class WordCount {
 
     public static class SplitedMapper extends Mapper<Object,Text, Text, IntWritable>{
         private final static IntWritable one = new IntWritable(1);  //value
-        private Text word = new Text();  //key
+        private final Text word = new Text();  //key
 
         @Override
         protected void map(Object key, Text value, Context context) throws IOException, InterruptedException {
@@ -65,7 +65,7 @@ public class WordCount {
     }
 
     public static class CountReducer extends Reducer<Text, IntWritable, Text,IntWritable>{
-        private IntWritable rlt = new IntWritable();
+        private final IntWritable rlt = new IntWritable();
 
         @Override
         protected void reduce(Text key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException {

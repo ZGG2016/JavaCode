@@ -15,11 +15,11 @@ public class wordcount {
 
     public static void main(String[] args) {
 
-        SparkConf conf = new SparkConf().setAppName("wordcount");
+        SparkConf conf = new SparkConf().setAppName("wordcount").setMaster("local");
         JavaSparkContext sc = new JavaSparkContext(conf);
 
-        JavaRDD<String> lines = sc.textFile(args[0]);
-
+//        JavaRDD<String> lines = sc.textFile(args[0]);
+        JavaRDD<String> lines = sc.textFile("src/main/resources/bos.txt");
         JavaRDD<String> words = lines.flatMap(s -> Arrays.asList(SPACE.split(s)).iterator());
 
         JavaPairRDD<String, Integer> ones = words.mapToPair(s -> new Tuple2<>(s, 1));
@@ -35,6 +35,6 @@ public class wordcount {
 }
 /*
 * standalone集群运行：
-*   spark-submit --class sparkbase.wordcount --master spark://zgg:7077  wc.jar hdfs://zgg:9000/in/wc.txt
+*   spark-submit --class spark.wordcount --master spark://zgg:7077  wc.jar hdfs://zgg:9000/in/wc.txt
 *
 * */
