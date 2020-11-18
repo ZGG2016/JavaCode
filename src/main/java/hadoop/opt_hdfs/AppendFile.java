@@ -13,11 +13,11 @@ import java.net.URI;
  */
 public class AppendFile {
     public static void main(String[] args) {
-        String hdfs_path = "hdfs://mycluster/home/wyp/wyp.txt";//文件路径
+        String hdfs_path = "hdfs://zgg:9000/in/wc.txt";//文件路径
         Configuration conf = new Configuration();
         conf.setBoolean("dfs.support.append", true);
 
-        String inpath = "/home/wyp/append.txt";
+        String inpath = "src/main/resources/bos.txt";
         FileSystem fs = null;
         try {
             fs = FileSystem.get(URI.create(hdfs_path), conf);
