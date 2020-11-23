@@ -1,4 +1,4 @@
-package hadoop.secondsort;
+package hadoop.secondsort.sol1;
 
 import org.apache.hadoop.io.WritableComparable;
 

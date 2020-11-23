@@ -1,6 +1,6 @@
 package hadoop.customgroup;
 
-import hadoop.secondsort.NewK2;
+import hadoop.secondsort.sol1.NewK2;
 import org.apache.hadoop.io.RawComparator;
 import org.apache.hadoop.io.WritableComparator;
 /**

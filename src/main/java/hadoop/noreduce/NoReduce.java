@@ -1,23 +1,24 @@
-package hadoop.wordcount;
+package hadoop.noreduce;
 
+import hadoop.wordcount.WordCount;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
-import org.apache.hadoop.io.VIntWritable;
-import org.apache.hadoop.mapred.SkipBadRecords;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.Mapper;
-import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.log4j.BasicConfigurator;
 
 import java.io.IOException;
 import java.net.URI;
-
-public class WordCount {
+/*
+* 没有Reduce
+*
+* */
+public class NoReduce {
 
     private static final String INPUT_PATH = "hdfs://zgg:9000/in/wc.txt";
     private static final String OUTPUT_PATH = "hdfs://zgg:9000/out/wc";
@@ -27,8 +28,6 @@ public class WordCount {
 
         FileSystem fs = FileSystem.get(new URI(INPUT_PATH), conf);
         Path outPath = new Path(OUTPUT_PATH);
-//        System.out.println("getName" +":"+outPath.getName()); //path:wc
-//        System.out.println("outPath" + ":" + outPath); //outPath:hdfs://zgg:9000/out/wc
         if(fs.exists(outPath)){
             fs.delete(outPath,true);
         }
@@ -39,10 +38,6 @@ public class WordCount {
         job.setMapperClass(SplitedMapper.class);
         job.setMapOutputKeyClass(Text.class);
         job.setMapOutputValueClass(IntWritable.class);
-
-        job.setReducerClass(CountReducer.class);
-        job.setOutputKeyClass(Text.class);
-        job.setOutputValueClass(IntWritable.class);
 
         FileInputFormat.setInputPaths(job,new Path(INPUT_PATH));
         FileOutputFormat.setOutputPath(job,new Path(OUTPUT_PATH));
@@ -62,18 +57,20 @@ public class WordCount {
             }
         }
     }
-
-    public static class CountReducer extends Reducer<Text, IntWritable, Text,IntWritable>{
-        private final IntWritable rlt = new IntWritable();
-
-        @Override
-        protected void reduce(Text key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException {
-            int sum = 0;
-            for(IntWritable val : values){
-                sum += val.get();
-            }
-            rlt.set(sum);
-            context.write(key, rlt);
-        }
-    }
+//    a       1
+//    aa      1
+//    aa      1
+//    abcdehello      1
+//    bb      1
+//    bcdhel  1
+//    cc      1
+//    cc      1
+//    dd      1
+//    flink   1
+//    hadoop  1
+//    hadoop  1
+//    hadoop  1
+//    hello   1
+//    hello   1
+//    spark   1
 }

@@ -1,6 +1,6 @@
 package hadoop.customgroup;
 
-import hadoop.secondsort.NewK2;
+import hadoop.secondsort.sol1.NewK2;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;

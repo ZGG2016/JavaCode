@@ -1,4 +1,4 @@
-package hadoop.secondsort;
+package hadoop.secondsort.sol1;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
@@ -17,8 +17,8 @@ import java.net.URI;
 
 public class SecondSort {
 
-    private static final String INPUT_PATH = "hdfs://zgg:9000/in/sortdata.txt";
-    private static final String OUTPUT_PATH = "hdfs://zgg:9000/out/sortdata";
+    private static final String INPUT_PATH = "hdfs://zgg:9000/in/secondsort.txt";
+    private static final String OUTPUT_PATH = "hdfs://zgg:9000/out/secondsort";
 
     public static void main(String[] Args) throws Exception {
 
@@ -47,6 +47,14 @@ public class SecondSort {
         FileOutputFormat.setOutputPath(job,new Path(OUTPUT_PATH));
 
         System.exit(job.waitForCompletion(true)?0:1);
+
+//        输出：【有去重，key和value有重复】
+//        1       1
+//        2       1
+//        2       2
+//        3       1
+//        3       2
+//        3       3
     }
 
 
