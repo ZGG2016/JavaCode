@@ -52,7 +52,7 @@ url9
 
 - solution1：根据url和对应的次数定义一个新key，利用二次排序，取出topk。
 
-- solution2：定义一个新key，将元素降序排列，然后将key[url]和value[次数]交换，根据新key数据类型和旧的value[次数]，作为key，利用排序特性，取出topk
+- solution2：根据url的次数，定义一个新key，将元素降序排列，然后将key[url]和value[次数]交换，根据新key数据类型和旧的value[次数]，作为key，利用排序特性，取出topk
 
 【以上：取前k或者取后k，可以通过改变新key中的compareTo方法来实现】
 

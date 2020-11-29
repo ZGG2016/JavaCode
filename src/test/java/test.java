@@ -1,24 +1,47 @@
 
-import java.util.*;
-import java.io.File;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FileSystem;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.io.VIntWritable;
+import org.apache.hadoop.mapred.SkipBadRecords;
+import org.apache.hadoop.mapreduce.Job;
+import org.apache.hadoop.mapreduce.Mapper;
+import org.apache.hadoop.mapreduce.Reducer;
+import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
+import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+import org.apache.log4j.BasicConfigurator;
+
+import java.io.IOException;
+import java.net.URI;
+import java.util.Comparator;
+import java.util.PriorityQueue;
 
 public class test {
-    public static void main(String[] args) {
-        String str = "ABC789D4E4";
-        for(int i=0;i<str.length();i++){
-            char ch = str.charAt(i);
-            if(ch<48 || ch>57){
-                str = str.replace(ch, ' ');
-            }
-        }
-        String[] ss = str.trim().split(" ");
-        HashSet<String> hs = new HashSet<>();
-        Collections.addAll(hs, ss);
-        String[] rlt = hs.toArray(new String[0]);
-        for(String s:rlt){
-            System.out.println(s);
-        }
+
+    public static void main(String[] args) throws Exception {
+
+//        PriorityQueue<Integer> maxHeap =
+//                new PriorityQueue<>(11, new Comparator<Integer>() {
+//                    @Override
+//                    public int compare(Integer o1, Integer o2) {
+//                        return o2-o1;
+//                    }
+//                });
+//
+//        maxHeap.add(2);
+//        maxHeap.add(4);
+//        maxHeap.add(3);
+//
+//        for(Integer a:maxHeap){
+//            System.out.println(a);
+//
+//        }
+//
+//        System.out.println(maxHeap.peek());
+
     }
+
+
 }
