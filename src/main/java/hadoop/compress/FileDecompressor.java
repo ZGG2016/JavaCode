@@ -20,17 +20,20 @@ public class FileDecompressor {
 
     public static void main(String[] args) throws Exception {
         String uri = INPUT_PATH;
+
         Configuration conf = new Configuration();
         FileSystem fs = FileSystem.get(URI.create(uri), conf);
 
         Path inputPath = new Path(uri);
         CompressionCodecFactory factory = new CompressionCodecFactory(conf);
         CompressionCodec codec = factory.getCodec(inputPath);
+
         if (codec == null) {
             System.err.println("No codec found for " + uri);
             System.exit(1);
         }
 
+        //取掉后缀后，为输出uri
         String outputUri =
                 CompressionCodecFactory.removeSuffix(uri, codec.getDefaultExtension());
 

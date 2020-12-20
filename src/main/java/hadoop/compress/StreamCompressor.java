@@ -17,8 +17,8 @@ public class StreamCompressor {
     public static void main(String[] args) throws ClassNotFoundException, IOException {
         BasicConfigurator.configure();
 
-        //String codecClassname = args[0];
-        String codecClassname = "org.apache.hadoop.io.compress.BZip2Codec";
+        String codecClassname = args[0];
+//        String codecClassname = "org.apache.hadoop.io.compress.BZip2Codec";
         Class<?> codecClass = Class.forName(codecClassname);
         Configuration conf = new Configuration();
         CompressionCodec codec = (CompressionCodec) ReflectionUtils.newInstance(codecClass, conf);
