@@ -1,6 +1,7 @@
 package hbase.filter;
 
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.hbase.Cell;
 import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.hadoop.hbase.KeyValue;
 import org.apache.hadoop.hbase.TableName;
@@ -11,8 +12,9 @@ import org.apache.hadoop.hbase.client.ResultScanner;
 import org.apache.hadoop.hbase.client.Scan;
 import org.apache.hadoop.hbase.client.Table;
 import org.apache.hadoop.hbase.filter.ColumnCountGetFilter;
+import org.apache.hadoop.hbase.util.Bytes;
 
-public class ColumnCountGetFilterExample {
+public class ColumnCountGetFilterTest {
 
 	public static void main(String[] args) throws Exception {
 		Configuration conf = HBaseConfiguration.create();
@@ -23,22 +25,25 @@ public class ColumnCountGetFilterExample {
 		conf.set("zookeeper.znode.parent","/hbase"); 
 
 		Connection connection = ConnectionFactory.createConnection(conf);
-		Table table = connection.getTable(TableName.valueOf("table1"));
-		
+		Table table = connection.getTable(TableName.valueOf("user"));
+
+		//简单的过滤器，只返回前N列的行。
 		 ColumnCountGetFilter filter=new ColumnCountGetFilter(1);  
          Scan scan=new Scan();  
          scan.setFilter(filter);  
-         //获取数据并返回  
+
          ResultScanner scanner=table.getScanner(scan);  
          
          for (Result result : scanner){
-        	 KeyValue[] kvs= (KeyValue[]) result.rawCells();
-             for(KeyValue kv:kvs)  
-             {  
-                 System.out.println(kv.toString());  
+             for (Cell cell : result.rawCells()) {
+                 System.out.println("Cell: " + cell);
+                 System.out.println("Value: " +
+                         Bytes.toString(cell.getValueArray(), cell.getValueOffset(),
+                                 cell.getValueLength()));
+                 //Cell: 1/info1:age/1608553940055/Put/vlen=2/seqid=0
+                 //Value: 22
              }  
          }
          scanner.close();  
-         table.close();  
 	}
 }

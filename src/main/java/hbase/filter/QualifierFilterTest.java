@@ -1,6 +1,8 @@
 package hbase.filter;
 
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.hbase.Cell;
+import org.apache.hadoop.hbase.CompareOperator;
 import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.Connection;
@@ -16,7 +18,7 @@ import org.apache.hadoop.hbase.filter.QualifierFilter;
 import org.apache.hadoop.hbase.filter.SubstringComparator;
 import org.apache.hadoop.hbase.util.Bytes;
 
-public class QualifierFilterExample {
+public class QualifierFilterTest {
 
 	public static void main(String[] args) throws Exception {
 		
@@ -28,25 +30,36 @@ public class QualifierFilterExample {
 		conf.set("zookeeper.znode.parent","/hbase"); 
 
 		Connection connection = ConnectionFactory.createConnection(conf);
-		Table table = connection.getTable(TableName.valueOf("table1"));
-		
-		Filter filter = new QualifierFilter(CompareFilter.CompareOp.EQUAL,
+		Table table = connection.getTable(TableName.valueOf("user"));
+
+		//根据列名来取
+		Filter filter = new QualifierFilter(CompareOperator.EQUAL,
 				new SubstringComparator("salary"));
 
 		Scan scan = new Scan();
 		scan.setFilter(filter);
-		ResultScanner scanner = table.getScanner(scan);			   
-		System.out.println("Scanning table... ");			   
-		for (Result result : scanner) {
-			  System.out.println(result);
+		ResultScanner rs = table.getScanner(scan);
+		System.out.println("Scanning table user...");
+		for (Result result : rs) {
+			for (Cell cell : result.rawCells()) {
+				System.out.println("Cell: " + cell);
+				System.out.println("Value: " +
+						Bytes.toString(cell.getValueArray(), cell.getValueOffset(),
+								cell.getValueLength()));
+			}
+			//Scanning table user...
+			//Cell: 1/info2:salary/1608553940135/Put/vlen=4/seqid=0
+			//Value: 2000
+			//Cell: 2/info2:salary/1608553940272/Put/vlen=4/seqid=0
+			//Value: 2500
+			//Cell: 3/info2:salary/1608553940405/Put/vlen=4/seqid=0
+			//Value: 5000
+			//Cell: 4/info2:salary/1608553940541/Put/vlen=4/seqid=0
+			//Value: 6000
+
+			rs.close();
+
 		}
-		scanner.close();
-
-		Get get = new Get(Bytes.toBytes("1"));
-		get.setFilter(filter);
-		Result result = table.get(get);
-		System.out.println("Result of get(): " + result);
-
 	}
 
 }
