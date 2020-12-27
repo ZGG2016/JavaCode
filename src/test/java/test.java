@@ -2,7 +2,9 @@
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.hbase.util.Bytes;
 import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.SequenceFile;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.VIntWritable;
 import org.apache.hadoop.mapred.SkipBadRecords;
@@ -22,25 +24,20 @@ public class test {
 
     public static void main(String[] args) throws Exception {
 
-//        PriorityQueue<Integer> maxHeap =
-//                new PriorityQueue<>(11, new Comparator<Integer>() {
-//                    @Override
-//                    public int compare(Integer o1, Integer o2) {
-//                        return o2-o1;
-//                    }
-//                });
-//
-//        maxHeap.add(2);
-//        maxHeap.add(4);
-//        maxHeap.add(3);
-//
-//        for(Integer a:maxHeap){
-//            System.out.println(a);
-//
-//        }
-//
-//        System.out.println(maxHeap.peek());
+        System.out.println(getLength("3"));
 
+    }
+    public static int getLength(String s) {
+        int length = 0;
+        for (int i = 0; i < s.length(); i++) {
+            int ascii = Character.codePointAt(s, i);
+            if (ascii >= 0 && ascii <= 255) {
+                length++;
+            } else {
+                length += 2;
+            }
+        }
+        return length;
     }
 
 
