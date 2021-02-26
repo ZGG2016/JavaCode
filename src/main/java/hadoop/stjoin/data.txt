@@ -1,4 +1,0 @@
-child parent
-Tom Jack
-Jack Alice
-Jack Jesse

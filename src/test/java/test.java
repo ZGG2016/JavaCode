@@ -13,6 +13,9 @@ import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+import org.apache.hadoop.mapreduce.v2.app.speculate.DefaultSpeculator;
+import org.apache.hadoop.mapreduce.v2.app.speculate.Speculator;
+import org.apache.hadoop.service.AbstractService;
 import org.apache.log4j.BasicConfigurator;
 
 import java.io.IOException;
@@ -24,21 +27,10 @@ public class test {
 
     public static void main(String[] args) throws Exception {
 
-        System.out.println(getLength("3"));
+        System.out.println();
 
     }
-    public static int getLength(String s) {
-        int length = 0;
-        for (int i = 0; i < s.length(); i++) {
-            int ascii = Character.codePointAt(s, i);
-            if (ascii >= 0 && ascii <= 255) {
-                length++;
-            } else {
-                length += 2;
-            }
-        }
-        return length;
-    }
+
 
 
 }
