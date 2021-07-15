@@ -27,7 +27,23 @@ public class test {
 
     public static void main(String[] args) throws Exception {
 
-        System.out.println();
+        String s1 = new String("aaa");
+        String s2 = new String("aaa");
+
+        System.out.println(s1==s2); //false
+        boolean f = s1.equals(s2);
+        System.out.println(f); //true
+
+        Integer c = 100;
+        Integer d = 100;
+        System.out.println(c==d); //true
+        System.out.println(c.equals(d));  //true
+
+        c = 200;
+        d = 200;
+        System.out.println(c instanceof Integer);
+        System.out.println(c==d); //false
+        System.out.println(c.equals(d));  //true
 
     }
 
